@@ -1,4 +1,4 @@
-FROM node:12.4-alpine as node-server
+FROM node:16-alpine as node-server
 
 WORKDIR /usr/src/app
 COPY package.json .
@@ -6,7 +6,7 @@ RUN npm install
 
 WORKDIR /usr/src/app/server
 COPY server/package.json .
-RUN apk --no-cache add --virtual builds-deps build-base python && \
+RUN apk --no-cache add --virtual builds-deps build-base python3 && \
   npm install --production --silent
 
 WORKDIR /usr/src/app
